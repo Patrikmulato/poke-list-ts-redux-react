@@ -1,4 +1,4 @@
-import React, { Dispatch, useEffect } from 'react';
+import React, { Dispatch } from 'react';
 import Form from 'react-bootstrap/Form';
 import { PokeTypeRequest } from '../type';
 

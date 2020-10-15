@@ -70,7 +70,6 @@ const PokemonCard = () => {
   };
 
   if (loading) return <LoadingIcon />;
-
   return (
     <>
       <Row>

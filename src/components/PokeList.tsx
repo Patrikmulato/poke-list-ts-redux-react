@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { getAllPokemonByTypes } from '../redux/pokemons/actions';
 
-import { PokemonByTypeRequest, PokemonByTypeState } from '../type';
+import { PokemonByTypeRequest } from '../type';
 import LoadingIcon from './LoadingIcon';
 import { Table } from 'react-bootstrap';
 import Search from './Search';
 import { Link } from 'react-router-dom';
+import { isCaughtFunc } from '../utils/isCaughtFunc';
+
+import './PokeList.css';
 
 interface PokeListInterface {
   type: string;
@@ -29,20 +32,11 @@ const PokeList: React.FC<PokeListInterface> = ({ type }: PokeListInterface) => {
     dispatch(getAllPokemonByTypes(type));
   }, [type, dispatch]);
 
-  /* React.useEffect(() => {
-    const text = localStorage.getItem('text');
-    console.log(text);
-    text && setText(text);
-  }, [setText]);
-
-  useEffect(() => {
-    localStorage.setItem('text', text);
-  }, [text]); */
-
   if (loading) return <LoadingIcon />;
   let filteredPokemon = pokemonByType.pokemon.filter((pokemon) =>
     pokemon.pokemon.name.includes(text)
   );
+
   return (
     <>
       <Search onChange={onChange} />
@@ -54,15 +48,19 @@ const PokeList: React.FC<PokeListInterface> = ({ type }: PokeListInterface) => {
           </tr>
         </thead>
         <tbody>
-          {filteredPokemon.map((pokemon) => (
-            <tr key={pokemon.pokemon.name}>
-              <td>
-                <Link to={`/pokemon/${pokemon.pokemon.name}`}>
-                  {pokemon.pokemon.name}{' '}
-                </Link>
-              </td>
-            </tr>
-          ))}
+          {filteredPokemon.map((pokemon) => {
+            const isCaught = isCaughtFunc(pokemon.pokemon.name);
+            return (
+              <tr key={pokemon.pokemon.name}>
+                <td className={isCaught ? 'caught' : ''}>
+                  <Link to={`/pokemon/${pokemon.pokemon.name}`}>
+                    {pokemon.pokemon.name}{' '}
+                  </Link>
+                  {isCaught && <small>Caught</small>}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </>
