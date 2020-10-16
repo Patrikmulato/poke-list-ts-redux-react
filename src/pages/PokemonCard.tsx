@@ -64,7 +64,7 @@ const PokemonCard = () => {
       );
       localStorage.setItem('caughtPokemon', JSON.stringify(filtered));
     } else {
-      localStorage.clear();
+      localStorage.removeItem('caughtPokemon');
     }
     setIsCaught(false);
   };

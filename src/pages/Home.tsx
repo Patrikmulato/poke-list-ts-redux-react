@@ -23,9 +23,8 @@ const Home = () => {
     dispatch(getAllPokeTypes());
   }, [dispatch]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const type = localStorage.getItem('type');
-    console.log(type);
     type && setType(type);
   }, [setType]);
 
