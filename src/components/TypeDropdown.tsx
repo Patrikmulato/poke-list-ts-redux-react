@@ -2,17 +2,17 @@ import React, { Dispatch } from 'react';
 import Form from 'react-bootstrap/Form';
 import { PokeTypeRequest } from '../type';
 
-interface DropdownInterface {
+interface TypeDropdownInterface {
   setType: Dispatch<React.SetStateAction<string>>;
   types: PokeTypeRequest;
   type: string;
 }
 
-const Dropdown: React.FC<DropdownInterface> = ({
+const TypeDropdown: React.FC<TypeDropdownInterface> = ({
   setType,
   types,
   type,
-}: DropdownInterface) => {
+}: TypeDropdownInterface) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setType(e.target.value);
@@ -37,4 +37,4 @@ const Dropdown: React.FC<DropdownInterface> = ({
   );
 };
 
-export default Dropdown;
+export default TypeDropdown;

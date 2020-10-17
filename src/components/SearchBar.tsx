@@ -1,28 +1,28 @@
 import React, { MouseEvent } from 'react';
 import { Col, Form } from 'react-bootstrap';
 
-interface SearchInterface {
+interface SearchBarInterface {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClick: (e: MouseEvent<HTMLInputElement, globalThis.MouseEvent>) => void;
 }
-const Search: React.FC<SearchInterface> = ({
+const SearchBar: React.FC<SearchBarInterface> = ({
   onChange,
   onClick,
-}: SearchInterface) => {
+}: SearchBarInterface) => {
   return (
     <Form>
       <Form.Row>
         <Col>
-          <Form.Group controlId='formBasicEmail'>
+          <Form.Group controlId='pokemonSearch'>
             <Form.Control
-              type='email'
-              placeholder='Search for pokemon'
+              type='text'
+              placeholder='SearchBar for pokemon'
               onChange={onChange}
             />
           </Form.Group>
         </Col>
         <Col className='my-2'>
-          <Form.Group controlId='formBasicCheckbox'>
+          <Form.Group controlId='caughtCheckbox'>
             <Form.Check
               type='checkbox'
               label='Show only caught pokemon'
@@ -35,4 +35,4 @@ const Search: React.FC<SearchInterface> = ({
   );
 };
 
-export default Search;
+export default SearchBar;

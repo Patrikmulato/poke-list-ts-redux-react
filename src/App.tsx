@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import PokemonCard from './pages/PokemonCard';
+import Home from './pages/Home/Home';
+import PokemonCard from './pages/PokemonCard/PokemonCard';
 
 function App() {
   return (
